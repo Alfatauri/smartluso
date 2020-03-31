@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    protected $dateFormat = 'd/m/yy H:i:s';
     /**
      * The attributes that are mass assignable.
      *
