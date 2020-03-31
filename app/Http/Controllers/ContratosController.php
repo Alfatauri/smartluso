@@ -28,10 +28,10 @@ class ContratosController extends Controller
                 ->paginate(10);
            
             $contratos->appends(['search' => $search]);
-            return view('index.grid', compact('contratos', 'search'));
+            return view('contratos.index', compact('contratos', 'search'));
                 } else {
             $contratos = Contrato::paginate(12);
-            return view('index.grid', compact('contratos'));
+            return view('contratos.index', compact('contratos'));
                 }
                
     }
