@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SmartPPP')
+@section('title', 'SmartLuso')
 
 @section('content_header')
 <h1>Contratos</h1>
@@ -11,19 +11,22 @@
 	.form-group {
 	    float: left;
 	}
-</style>
+</style><!--
 <div class="box box-primary">
+	
 	<div class="box-header with-border">
 		<i class="fa fa-chevron-right"></i>
-		<span>Os <strong>locais</strong> são os endereços físicos das organizações, para enriquecer o mapa!</span>
+		<span>As <strong>PO</strong> são contratos, para enriquecer o mapa!</span>
 	</div>
+	
 	<form role="form" id="form" name="form" method="POST" action="contratos">
 		<div class="box-body">
 				{{ csrf_field() }}
+				<!--
 				<div class="form-group col-sm-1">
 					<label for="id">Id</label>
 					<input type="text" class="form-control" id="id" name="id" readonly="true">
-				</div>
+				</div> 
 				<div class="form-group col-sm-2">
 					<label for="skCliente">skCliente</label>
 					<input type="text" class="form-control" id="skCliente" name="skCliente">
@@ -45,10 +48,59 @@
 			<button type="submit" class="btn btn-primary btn-app pull-right"><i class="fa fa-save"></i> Salvar</button>
 		</div>
 	</form>
+	
+	
+
+</div>
+-->
+{!! Form::close() !!}
 </div>
 
 <div class="box box-danger">
 	<div class="box-body table-responsive">
+		@include('layouts.messages')
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+      <tr>
+          <th>#</th>
+          <th>Descrição</th>
+          <th>Cliente</th>
+          <th>Grupo</th>
+          <th>Valor</th>
+          <th>
+        <a href="{{ route('contratos.create') }}" class="btn btn-info btn-sm" >Novo</a>
+          </th>
+      </tr>
+        </thead>
+        <tbody>
+          
+      @forelse($contratos as $contrato)
+      <tr>
+			<td>{{ $contrato->id }}</td>
+			<td><a class="btn" onclick="edit('{{ $contrato->skCliente }}','{{ $contrato->Categoria }}','{{ $contrato->skGerente }}','{{ $contrato->Regional }}','{{ $contrato->id }}')">{{ $contrato->id }}</a></td>
+			<td>{{ $contrato->skCliente }}</td>
+			<td>{{ $contrato->Categoria }}</td>
+			<td>{{ $contrato->skGerente }}</td>
+			<td>{{ $contrato->Regional }}</td>
+          <td>
+        <a href="{{ route('contratos.edit', $customer->id) }}" class="btn btn-warning btn-sm">Editar</a>
+        <form method="POST" action="{{ route('contratos.destroy', $customer->id) }}" style="display: inline" onsubmit="return confirm('Deseja excluir este registro?');" >
+            @csrf
+            <input type="hidden" name="_method" value="delete" >
+            <button class="btn btn-danger btn-sm">Excluir</button>
+        </form>
+          </td>
+      </tr>
+      @empty
+      <tr>
+          <td colspan="6">Nenhum registro encontrado para listar</td>
+      </tr>
+      @endforelse
+        </tbody>
+    </table>
+    {{ $contratos->links() }}
+
+		<!--
 		<table id="tabela1" class="table table-bordered table-striped table-hover">
 			<thead>
 				<tr>
@@ -72,13 +124,16 @@
 				@endforeach
 			</tbody>
 		</table>
+		-->
 	</div>
 </div>
 
 <script src="js/jquery.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery.dataTables.min.js"></script>
-<script src="js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+
+
 <script>
 	function edit(id,code,name,category,uf,cidade) {
 		$('#id').val(id);

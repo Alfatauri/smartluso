@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Contrato;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ContratosRequest;
+
 class ContratosController extends Controller
 {
     /**
@@ -43,7 +47,7 @@ class ContratosController extends Controller
      */
     public function create()
     {
-        //
+        return view('contratos.form');
     }
 
     /**
@@ -52,9 +56,17 @@ class ContratosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContratosRequest $request)
     {
-        //
+        $contratos = Contrato::create($request->all());
+    
+        if ($contratos) {
+    
+            Session::flash('success', "Registro #{$contratos->id} salvo com êxito");
+            
+            return redirect()->route('contratos.index');
+        }
+        return redirect()->back()->withErrors(['error', "Registo não foi salvo."]);
     }
 
     /**
@@ -76,7 +88,13 @@ class ContratosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contratos = Contrato::findOrFail($id);
+    
+        if ($contratos) {
+            return view('contratos.index', compact('contratos'));
+        } else {
+            return redirect()->back();
+        }    
     }
 
     /**
@@ -86,9 +104,17 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContratosRequest $request, $id)
     {
-        //
+        $contratos = Contrato::where('id', $id)->update($request->except('_token', '_method'));
+     
+        if ($contratos) {
+       
+      Session::flash('success', "Registro #{$id} atualizado com êxito");
+       
+      return redirect()->route('contratos.index');
+        }
+        return redirect()->back()->withErrors(['error', "Registo #{$id} não foi encontrado"]);
     }
 
     /**
@@ -99,6 +125,14 @@ class ContratosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contratos = Contrato::where('id', $id)->delete();
+     
+        if ($contratos) {
+       
+             Session::flash('success', "Registro #{$id} excluído com êxito");
+       
+             return redirect()->route('contratos.index');
+        } 
+        return redirect()->back()->withErrors(['error', "Registo #{$id} não pode ser excluído"]);
     }
 }
