@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'SmartPPP')
+@section('title', 'SmartLuso : Contratos')
 
 @section('content_header')
 <h1>Contratos</h1>
