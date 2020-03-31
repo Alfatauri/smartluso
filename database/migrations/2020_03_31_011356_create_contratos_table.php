@@ -13,8 +13,23 @@ class CreateContratosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contratos', function (Blueprint $table) {
+        Schema::create('Contratos', function (Blueprint $table) {
             $table->id();
+            $table->string('dtAprovação');
+            $table->string('skCliente');
+            $table->string('Categoria');
+            $table->string('Descrição');
+            $table->string('skGerente');
+            $table->string('Segmento');
+            $table->string('skTipoProposta');
+            $table->string('skGrupo');
+            $table->string('Regional');
+            $table->string('Validade');
+            $table->string('ValorAprovado');
+            $table->string('Limite_Utilizado');
+            $table->string('Probabilidade_Saque');
+            $table->string('Previsão_Saque');
+            $table->string('Observações');
             $table->timestamps();
         });
     }
