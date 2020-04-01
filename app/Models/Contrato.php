@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contrato extends Model
 {
     protected $dateFormat = 'd/m/yy H:i:s';
+    
     protected $fillable = [
         'dtAprovação',
         'skCliente',

@@ -34,9 +34,10 @@ class ContratosController extends Controller
             $contratos->appends(['search' => $search]);
             return view('contratos.index', compact('contratos', 'search'));
                 } else {
-            $contratos = Contrato::paginate(12);
-            return view('contratos.index', compact('contratos'));
+                    $contratos = Contrato::paginate(12);
+                    return view('contratos.index', compact('contratos'));
                 }
+                
                
     }
 
@@ -89,7 +90,6 @@ class ContratosController extends Controller
     public function edit($id)
     {
         $contratos = Contrato::findOrFail($id);
-    
         if ($contratos) {
             return view('contratos.index', compact('contratos'));
         } else {
