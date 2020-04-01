@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('contratos/{$id}/edit', 'ContratosController@edit')->name('id');
+//Route::get('contratos/{$id}/edit', 'ContratosController@edit')->name('id');
 
 Route::resource('contratos', 'ContratosController');
 

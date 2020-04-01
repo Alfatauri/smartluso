@@ -43,7 +43,7 @@
       </tr>
         </thead>
         <tbody>
-			
+          
       @forelse($contratos as $contrato)
       <tr>
           <td>{{ $contrato->id }}</td>

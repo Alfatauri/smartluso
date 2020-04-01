@@ -91,7 +91,7 @@ class ContratosController extends Controller
     {
         $contratos = Contrato::findOrFail($id);
         if ($contratos) {
-            return view('contratos.index', compact('contratos'));
+            return view('contratos.form', compact('contratos'));
         } else {
             return redirect()->back();
         }    
