@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Registro: Contratos')
+@section('title', 'SmartLuso')
  
 @section('content_header')
 <h1>Contratos</h1>

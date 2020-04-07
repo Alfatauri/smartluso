@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 @extends('layouts.app')
-@section('title', 'Listando todos os registros')
+@section('title', 'SmartLuso')
 
 @section('content')
-<h1>Listagem Principal</h1>
+<h5><b>Listagem de Contratos</b></h5>
 <hr>
 {!! Form::open(array('method' => 'get', 'route' => 'contratos.index', 'class' => 'form-horizontal')) !!}
  
@@ -43,8 +43,13 @@
       </tr>
         </thead>
         <tbody>
-          
+          @php
+            $i = 0;  
+          @endphp
       @forelse($contratos as $contrato)
+          @php
+              $i = $i + 1;
+          @endphp
       <tr>
           <td>{{ $contrato->id }}</td>
           <td>{{ $contrato->Descrição }}</td>
@@ -67,11 +72,16 @@
       @endforelse
         </tbody>
     </table>
+    @php
+        if($i != 0 && $i > 0){
+          if($i == 1){
+            echo("1 registro encontrado.");
+          }else{
+            echo($i . " registros encontrados.");
+          }
+        }
+    @endphp
     {{ $contratos->links() }}
-
-
-
-
     
 </div>
 @endsection

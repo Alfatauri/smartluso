@@ -31,7 +31,7 @@ return [
     */
 
     'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>Smart</b>Luso',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'logo-luso.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -209,27 +209,15 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'        => 'Contratos',
             'url'         => 'contratos',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-archway',
         ],
         [
-            'text'        => 'Config',
-            'url'         => 'config',
-            'icon'        => 'fa fa-fw fa-cog',
+            'text'        => 'Usuários',
+            'url'         => 'user',
+            'icon'        => 'fa fa-fw fa-user',
         ],
-        
-       
     ],
 
     /*
