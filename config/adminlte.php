@@ -209,7 +209,7 @@ return [
 
     'menu' => [
         [
-            'text'        => 'Contratos',
+            'text'        => 'Proposta de Crédito',
             'url'         => 'contratos',
             'icon'        => 'fas fa-archway',
         ],
